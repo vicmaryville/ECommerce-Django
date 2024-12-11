@@ -19,9 +19,9 @@ SECRET_KEY = "django-insecure-=%qd*1rfqv3pfs*6n#tdk)8g1dy2t4sc^d=dhk)jb@*#@l2xti
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['ecommerce-django-production.up.railway.app', 'https://ecommerce-django-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://ecommerce-django-production.up.railway.app']
+#ALLOWED_HOSTS = ['https://diasporaeat.com']
+ALLOWED_HOSTS = ['https://diasporaeat.com', 'https://ecommerce-django-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://diasporaeat.com','https://ecommerce-django-production.up.railway.app']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "cart",
     "payment",
     'whitenoise.runserver_nostatic',
+    'paypal.standard.ipn',
     
     
 ]
@@ -150,3 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Add Paypal settings
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'business@codextratest.com' # business sandbox account

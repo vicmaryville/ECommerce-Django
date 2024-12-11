@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,6 +12,8 @@ urlpatterns = [
     path('shipped_dash', views.shipped_dash, name='shipped_dash'),
     path('not_shipped_dash', views.not_shipped_dash, name='not_shipped_dash'),
     path('orders/<int:pk>', views.orders, name='orders'),
+    path('paypal/', include('paypal.standard.ipn.urls')),
+
 
 
    
