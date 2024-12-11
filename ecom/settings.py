@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "cart",
     "payment",
     'whitenoise.runserver_nostatic',
-    'paypal.standard.ipn',
+    # 'paypal.standard.ipn',
     
     
 ]

@@ -6,11 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from Store.models import Product, Profile
 import datetime
-# import paypal
-from django.urls import reverse
-from paypal.standard.forms import PayPalPaymentsForm
-from django.conf import settings
-import uuid # unique id for duplicate orders
+# # import paypal
+# from django.urls import reverse
+# from paypal.standard.forms import PayPalPaymentsForm
+# from django.conf import settings
+# import uuid # unique id for duplicate orders
 
 
 
