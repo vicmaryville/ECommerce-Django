@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import process_order
 
-app_name = 'payment'
+
 
 urlpatterns = [
     path('payment_success', views.payment_success, name='payment_success'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('shipped_dash', views.shipped_dash, name='shipped_dash'),
     path('not_shipped_dash', views.not_shipped_dash, name='not_shipped_dash'),
     path('orders/<int:pk>', views.orders, name='orders'),
-    path('paypal/', include(('paypal.standard.ipn.urls','paypal'), namespace='paypal')),
+    path('paypal/', include('paypal.standard.ipn.urls'))
 
 
 
