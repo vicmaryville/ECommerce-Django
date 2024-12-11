@@ -19,7 +19,7 @@ SECRET_KEY = "django-insecure-=%qd*1rfqv3pfs*6n#tdk)8g1dy2t4sc^d=dhk)jb@*#@l2xti
 DEBUG = True
 
 ALLOWED_HOSTS = ['ecommerce-django-production.up.railway.app', 'https://ecommerce-django-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['ecommerce-django-production.up.railway.app', 'https://ecommerce-django-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-django-production.up.railway.app']
 
 
 # Application definition
@@ -83,7 +83,7 @@ DATABASES = {
         "ENGINE": 'django.db.backends.postgresql',
         "NAME": 'railway',
         "USER": 'postgres',
-        "PASSWORD": os.environ['DB_PASSWORD_YO'],
+        "PASSWORD": os.environ.get('DB_PASSWORD_YO', ''),
         "HOST": 'junction.proxy.rlwy.net', 
         "PORT": '56567',
     }
