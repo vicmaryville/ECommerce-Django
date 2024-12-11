@@ -4,6 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import process_order
 
+app_name = 'payment'
+
 urlpatterns = [
     path('payment_success', views.payment_success, name='payment_success'),
     path('payment_failed', views.payment_failed, name='payment_failed'),
