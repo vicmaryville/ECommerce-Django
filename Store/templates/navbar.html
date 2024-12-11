@@ -24,9 +24,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Orders</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'shipped_dash' %}">Shipped Orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'payment:shipped_dash' %}">Shipped Orders</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'not_shipped_dash' %}">Unshipped Orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'payment:not_shipped_dash' %}">Unshipped Orders</a></li>
                     </ul>
                 </li>
 
