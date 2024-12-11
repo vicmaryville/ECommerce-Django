@@ -20,7 +20,7 @@ DEBUG = True
 
 
 #ALLOWED_HOSTS = ['https://diasporaeat.com']
-ALLOWED_HOSTS = ['https://diasporaeat.com', 'diasporaeat.com', 'diasporaeat.railway.app', '*.railway.app', 'localhost', 'https://ecommerce-django-production.up.railway.app']
+ALLOWED_HOSTS = ['https://diasporaeat.com', 'diasporaeat.com', 'diasporaeat.railway.app', '*.railway.app', 'localhost', '127.0.0.1:8000', 'https://ecommerce-django-production.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://diasporaeat.com','https://ecommerce-django-production.up.railway.app']
 
 
