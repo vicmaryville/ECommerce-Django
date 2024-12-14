@@ -111,8 +111,6 @@ def process_order(request):
         shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_state']}\n{my_shipping['shipping_zipcode']}\n{my_shipping['shipping_country']}"
         amount_paid = totals
 
-
-
         if request.user.is_authenticated:
             # logged in
             user = request.user
@@ -121,25 +119,37 @@ def process_order(request):
             create_order = Order(user=user, full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
             create_order.save()
 
-            # Add order items
-            # get thr order id
+
+            # get the order id
             order_id = create_order.pk
             
            # Get product info
             for product in cart_products:
                  # Get product ID
                 product_id = product.id
+
                 # Get product price
                 if product.is_sale:
                     price = product.sale_price
                 else:
                     price = product.price
+
                 # Get product quantity
-               
                 for key,value in quantities.items():
                     if int(key) == product_id:
                        create_order_item = OrderItem(order_id=order_id, product_id=product_id, user=user, price=price, quantity=value)
                        create_order_item.save()
+
+                # Delete cart
+            for key in list(request.session.keys()):
+                if key == "session_key":
+                    # delete the key
+                    del request.session[key]
+
+            # Delete cart from database
+            current_user = Profile.objects.filter(user__id=request.user.id)
+            # Delete cart from database
+            current_user.update(old_cart="")
 
 
             messages.error(request, "Order Processed Successfully")
@@ -199,25 +209,30 @@ def billing_info(request):
 
         # Get the host
         host = request.get_host()
+        # Create Invoice ID
+        my_Invoice = str(uuid.uuid4())
         # create Paypal from dictionary
         paypal_dict = {
             "business":settings.PAYPAL_RECEIVER_EMAIL,
             "amount":totals,
             "item_name":"Order",
             "no_shipping":2,
-            "invoice":str(uuid.uuid4()),
+            "invoice":my_Invoice,
             "currency_code":"USD",
             "notify_url":"https://{}{}".format(host,reverse('paypal-ipn')),
             "return_url":"https://{}{}".format(host,reverse('payment_success')),
             "cancel_return":"https://{}{}".format(host,reverse('payment_failed')),
         }
-        paypal_form = PayPalPaymentsForm(initial=paypal_dict)
 
+        # Create the Paypal button
+        paypal_form = PayPalPaymentsForm(initial=paypal_dict)
 
         # check to see if user is logged in
         if request.user.is_authenticated:
 			# Get The Billing Form
             billing_form = PaymentForm()
+
+            
             shipping_form = request.POST
             return render(request, "payment/billing_info.html", {"paypal_form":paypal_form, "cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form})
         else:
@@ -267,6 +282,24 @@ def checkout(request):
 
 
 def payment_success(request):
+    # delete the cart
+
+    # first get the cart
+    cart = Cart(request)
+    cart_products = cart.get_products()
+    quantities = cart.get_quants()
+    totals = cart.cart_total()
+
+    # Delete cart
+    for key in list(request.session.keys()):
+                if key == "session_key":
+                    # delete the key
+                    del request.session[key]
+
+
+
+
+
     return render(request, 'payment/payment_success.html', {})
 
 def payment_failed(request):
