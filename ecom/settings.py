@@ -20,8 +20,8 @@ DEBUG = True
 
 
 #ALLOWED_HOSTS = ['https://diasporaeat.com']
-ALLOWED_HOSTS = ['https://diasporaeat.com', 'diasporaeat.com', 'diasporaeat.railway.app', '*.railway.app', 'localhost', 'd76b-12-29-208-180.ngrok-free.app', 'https://ecommerce-django-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://diasporaeat.com','https://ecommerce-django-production.up.railway.app', 'https://d76b-12-29-208-180.ngrok-free.app']
+ALLOWED_HOSTS = ['https://diasporaeat.com', 'diasporaeat.com', 'diasporaeat.railway.app', '*.railway.app', 'localhost', 'e996-12-29-208-180.ngrok-free.app', 'https://ecommerce-django-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://diasporaeat.com','https://ecommerce-django-production.up.railway.app',  'https://e996-12-29-208-180.ngrok-free.app']
 
 
 # Application definition
