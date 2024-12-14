@@ -153,5 +153,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Add Paypal settings
-PAYPAL_TEST = True
+PAYPAL_TEST = False
 PAYPAL_RECEIVER_EMAIL = 'business@codextratest.com' # business sandbox account

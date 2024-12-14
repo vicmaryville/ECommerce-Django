@@ -225,7 +225,7 @@ def billing_info(request):
 			# Get The Billing Form
             billing_form = PaymentForm()
             shipping_form = request.POST
-            return render(request, "payment/billing_info.html", {" paypal_form":paypal_form,"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form})
+            return render(request, "payment/billing_info.html", {" paypal_form":paypal_form, "cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form})
     else:
         messages.error(request, "You must be logged in to checkout.")
         return redirect('login')
